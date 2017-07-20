@@ -1,91 +1,120 @@
-(function() {
-'use strict';
+(function () {
+  'use strict';
 
-Darkroom.UI = {
-  Toolbar: Toolbar,
-  ButtonGroup: ButtonGroup,
-  Button: Button,
-};
+  Darkroom.UI = {
+    Toolbar: Toolbar,
+    ButtonGroup: ButtonGroup,
+    Button: Button
+  };
 
 // Toolbar object.
-function Toolbar(element) {
-  this.element = element;
-}
-
-Toolbar.prototype = {
-  createButtonGroup: function(options) {
-    var buttonGroup = document.createElement('div');
-    buttonGroup.className = 'darkroom-button-group';
-    this.element.appendChild(buttonGroup);
-
-    return new ButtonGroup(buttonGroup);
+  function Toolbar(element) {
+    this.element = element;
   }
-};
+
+  Toolbar.prototype = {
+    createButtonGroup: function (options) {
+      var buttonGroup = document.createElement('div');
+      buttonGroup.className = 'darkroom-button-group';
+      this.element.appendChild(buttonGroup);
+
+      return new ButtonGroup(buttonGroup);
+    }
+  };
 
 // ButtonGroup object.
-function ButtonGroup(element) {
-  this.element = element;
-}
-
-ButtonGroup.prototype = {
-  createButton: function(options) {
-    var defaults = {
-      image: 'help',
-      type: 'default',
-      group: 'default',
-      hide: false,
-      disabled: false
-    };
-
-    options = Darkroom.Utils.extend(options, defaults);
-
-    var buttonElement = document.createElement('button');
-    buttonElement.type = 'button';
-    buttonElement.className = 'darkroom-button darkroom-button-' + options.type;
-    buttonElement.innerHTML = '<svg class="darkroom-icon"><use xlink:href="#' + options.image + '" /></svg>';
-    this.element.appendChild(buttonElement);
-
-    var button = new Button(buttonElement);
-    button.hide(options.hide);
-    button.disable(options.disabled);
-
-    return button;
+  function ButtonGroup(element) {
+    this.element = element;
   }
-}
 
-// Button object.
-function Button(element) {
-  this.element = element;
-}
+  ButtonGroup.prototype = {
+    createButton: function (options) {
+      var defaults = {
+        image: 'help',
+        type: 'default',
+        group: 'default',
+        hide: false,
+        disabled: false
+      };
 
-Button.prototype = {
-  addEventListener: function(eventName, listener) {
-    if (this.element.addEventListener){
-      this.element.addEventListener(eventName, listener);
-    } else if (this.element.attachEvent) {
-      this.element.attachEvent('on' + eventName, listener);
+      options = Darkroom.Utils.extend(options, defaults);
+
+      var buttonElement = document.createElement('button');
+      buttonElement.type = 'button';
+      buttonElement.className = 'darkroom-button darkroom-button-' + options.type;
+      buttonElement.innerHTML = '<svg class="darkroom-icon"><use xlink:href="#' + options.image + '" /></svg>';
+      this.element.appendChild(buttonElement);
+
+      var button = new Button(buttonElement);
+      button.hide(options.hide);
+      button.disable(options.disabled);
+
+      return button;
+    },
+
+    createRotationInputField: function (options) {
+      var defaults = {
+        image: 'help',
+        type: 'default',
+        group: 'default',
+        hide: false,
+        disabled: false
+      };
+
+      options = Darkroom.Utils.extend(options, defaults);
+
+      var inputElement = document.createElement('input');
+      inputElement.type = 'number';
+      inputElement.setAttribute("step", "10");
+      inputElement.setAttribute("min", "-360");
+      inputElement.setAttribute("max", "360");
+      inputElement.setAttribute("value", "0");
+      inputElement.className = 'darkroom-input darkroom-input-' + options.type;
+      inputElement.id = options.id;
+      //inputElement.innerHTML = '';
+      this.element.appendChild(inputElement);
+
+      var inputField = new Button(inputElement);
+      inputField.hide(options.hide);
+      inputField.disable(options.disabled);
+
+      return inputField;
     }
-  },
-  removeEventListener: function(eventName, listener) {
-    if (this.element.removeEventListener){
-      this.element.removeEventListener(eventName, listener);
-    }
-  },
-  active: function(value) {
-    if (value)
-      this.element.classList.add('darkroom-button-active');
-    else
-      this.element.classList.remove('darkroom-button-active');
-  },
-  hide: function(value) {
-    if (value)
-      this.element.classList.add('darkroom-button-hidden');
-    else
-      this.element.classList.remove('darkroom-button-hidden');
-  },
-  disable: function(value) {
-    this.element.disabled = (value) ? true : false;
+  };
+
+// Button объект.
+  function Button(element) {
+    this.element = element;
   }
-};
+
+  Button.prototype = {
+    addEventListener: function (eventName, listener) {
+      if (this.element.addEventListener) {
+        this.element.addEventListener(eventName, listener);
+      } else if (this.element.attachEvent) {
+        this.element.attachEvent('on' + eventName, listener);
+      }
+    },
+    removeEventListener: function (eventName, listener) {
+      if (this.element.removeEventListener) {
+        this.element.removeEventListener(eventName, listener);
+      }
+    },
+    active: function (value) {
+      if (value)
+        this.element.classList.add('darkroom-button-active');
+      else
+        this.element.classList.remove('darkroom-button-active');
+    },
+    hide: function (value) {
+      if (value)
+        this.element.classList.add('darkroom-button-hidden');
+      else
+        this.element.classList.remove('darkroom-button-hidden');
+    },
+    disable: function (value) {
+      this.element.disabled = (value) ? true : false;
+    }
+  };
 
 })();

@@ -72,7 +72,7 @@ var CropZone = fabric.util.createClass(fabric.Rect, {
     ctx.scale(scaleX, scaleY);
 
     // Overlay rendering
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
     this._renderOverlay(ctx);
 
     // Set dashed borders
@@ -81,16 +81,19 @@ var CropZone = fabric.util.createClass(fabric.Rect, {
     else if (ctx.mozDash !== undefined)
       ctx.mozDash = [dashWidth, dashWidth];
 
-    // First lines rendering with black
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+    // Толщина линии бордера
+    ctx.lineWidth = 3;
+    
+    // First lines rendering with black (Симпатичная рамка пунктиром часть 1)
+    ctx.strokeStyle = 'rgba(255, 255, 0, 1)';
     this._renderBorders(ctx);
-    this._renderGrid(ctx);
+    //this._renderGrid(ctx);
 
-    // Re render lines in white
+    // Re render lines in white (Симпатичная рамка пунктиром часть 2)
     ctx.lineDashOffset = dashWidth;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.strokeStyle = 'rgba(255, 255, 0, 1)';
     this._renderBorders(ctx);
-    this._renderGrid(ctx);
+    //this._renderGrid(ctx);
 
     // Reset scale
     ctx.scale(1/scaleX, 1/scaleY);
@@ -126,7 +129,7 @@ var CropZone = fabric.util.createClass(fabric.Rect, {
 
     ctx.beginPath();
     
-    // Draw outer rectangle.
+    // Draw outer rectangle. Если рисуем оверлей будет наоборот (вокруг выделения, а не внутри)
     // Numbers are +/-1 so that overlay edges don't get blurry.
     ctx.moveTo(x0 - 1, y0 - 1);
     ctx.lineTo(x3 + 1, y0 - 1);
@@ -135,7 +138,7 @@ var CropZone = fabric.util.createClass(fabric.Rect, {
     ctx.lineTo(x0 - 1, y0 - 1);
     ctx.closePath();
 
-    // Draw inner rectangle.
+    // Draw inner rectangle. Внутренняя часть выделения.
     ctx.moveTo(x1, y1);
     ctx.lineTo(x1, y2);
     ctx.lineTo(x2, y2);
@@ -496,7 +499,7 @@ Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
       top: top / image.getHeight(),
       left: left / image.getWidth(),
       width: width / image.getWidth(),
-      height: height / image.getHeight(),
+      height: height / image.getHeight()
     }));
   },
 
@@ -519,7 +522,7 @@ Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
       cornerSize: 8,
       transparentCorners: false,
       lockRotation: true,
-      hasRotatingPoint: false,
+      hasRotatingPoint: false
     });
 
     if (null !== this.options.ratio) {
@@ -571,7 +574,7 @@ Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
     // Replace current point into the canvas
     leftX = Math.max(0, leftX);
     rightX = Math.min(canvas.getWidth(), rightX);
-    topY = Math.max(0, topY)
+    topY = Math.max(0, topY);
     bottomY = Math.min(canvas.getHeight(), bottomY);
 
     // Recalibrate coordinates according to given options
@@ -592,7 +595,7 @@ Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
     if (leftX < 0) {
       // Translate to the left
       rightX += Math.abs(leftX);
-      leftX = 0
+      leftX = 0;
     }
     if (rightX > canvas.getWidth()) {
       // Translate to the right
@@ -602,7 +605,7 @@ Darkroom.plugins['crop'] = Darkroom.Plugin.extend({
     if (topY < 0) {
       // Translate to the bottom
       bottomY += Math.abs(topY);
-      topY = 0
+      topY = 0;
     }
     if (bottomY > canvas.getHeight()) {
       // Translate to the right

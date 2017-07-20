@@ -60,7 +60,7 @@ figure {
 }
 
 .container {
-  width: 700px;
+  width: 100%;
   margin: auto;
 }
 
@@ -93,6 +93,10 @@ h1 {
 
 .figure-wrapper {
   /*text-align: center;*/
+  float: left;
+  width: 32%;
+  margin: auto;
+  padding: 0 1em;
 }
 
 .image-container {
