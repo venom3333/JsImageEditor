@@ -52,7 +52,7 @@
       return button;
     },
 
-    createRotationInputField: function (options) {
+    createInputField: function (options) {
       var defaults = {
         image: 'help',
         type: 'default',
@@ -63,16 +63,24 @@
 
       options = Darkroom.Utils.extend(options, defaults);
 
+      // Контейнер для нашего инпут поля
+      var inputElementContainer = document.createElement('span');
+      inputElementContainer.id = options.id + "-container";
+
       var inputElement = document.createElement('input');
       inputElement.type = 'number';
-      inputElement.setAttribute("step", "10");
-      inputElement.setAttribute("min", "-360");
-      inputElement.setAttribute("max", "360");
-      inputElement.setAttribute("value", "0");
-      inputElement.className = 'darkroom-input darkroom-input-' + options.type;
       inputElement.id = options.id;
+      inputElement.className = options.className;
+      inputElement.setAttribute("step", options.step);
+      inputElement.setAttribute("min", options.min);
+      inputElement.setAttribute("max", options.max);
+      inputElement.setAttribute("value", options.value);
+      
       //inputElement.innerHTML = '';
-      this.element.appendChild(inputElement);
+      // Прикрепляем к контейнеру
+      inputElementContainer.appendChild(inputElement);
+      // И вместе с контейнером цепляем к общему элементу UI
+      this.element.appendChild(inputElementContainer);
 
       var inputField = new Button(inputElement);
       inputField.hide(options.hide);

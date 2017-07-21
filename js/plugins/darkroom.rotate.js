@@ -4,11 +4,24 @@
   var Rotation = Darkroom.Transformation.extend({
     applyTransformation: function (canvas, image, next) {
 
-    // Абсолютный или относительный угол
+      // Абсолютный или относительный угол
       if (this.options.flag === 'absolute') {
-        var angle = this.options.angle % 360;
+        var angle = this.options.angle;
+        // Округляем до десятков
+        angle = Math.round(angle / 10) * 10;
+        // Ограничения от -180 до 180
+        if (angle > 180)
+          angle = 180;
+        else if (angle < -180)
+          angle = -180;
+
       } else {
-        var angle = (image.getAngle() + this.options.angle) % 360;
+        var angle = (image.getAngle() + this.options.angle);
+        // // Ограничения от -180 до 180
+        if (angle > 180)
+          angle = -170;
+        else if (angle < -180)
+          angle = 170;
       }
 
       image.rotate(angle);
@@ -44,13 +57,18 @@
       var leftButton = buttonGroup.createButton({
         image: 'rotate-left'
       });
+      
+      var rotationInput = buttonGroup.createInputField({
+        id: 'rotation-angle',
+        className: 'darkroom-input darkroom-input-default',
+        step: '10',
+        min: '-180',
+        max: '180',
+        value: '0'
+      });
 
       var rightButton = buttonGroup.createButton({
         image: 'rotate-right'
-      });
-
-      var rotationInput = buttonGroup.createRotationInputField({
-        id: 'rotation-angle'
       });
 
       leftButton.addEventListener('click', this.rotateLeft.bind(this));

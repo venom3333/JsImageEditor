@@ -1,3 +1,4 @@
+$toolBarBackground: #555;
 //
 // Toolbar
 //
@@ -6,7 +7,7 @@
   position: absolute;
   top: -45px;
   left: 0;
-  background: #888;
+  background: $toolBarBackground;
   height: 40px;
   min-width: 40px;
   z-index: 99;
@@ -15,17 +16,17 @@
   padding: 0 5px;
 
   // Triangle
-/*  &:before {
-    content: "";
-    position: absolute;
-    bottom: -7px;
-    left: 20px;
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid #444;
-  }*/
+  /*  &:before {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #444;
+    }*/
 }
 
 //
@@ -57,11 +58,11 @@
 
   &:hover {
     cursor: pointer;
-    background: #555;
+    background: #333;
   }
   &:active {
     cursor: pointer;
-    background: #333;
+    background: #222;
   }
 
   &:disabled .darkroom-icon {
@@ -96,4 +97,25 @@
   width: 24px;
   height: 24px;
   fill: #fff;
+}
+
+// custom
+.darkroom-input-default{
+  position: relative;
+  top:-6px;
+  background: $toolBarBackground;
+  color: white;
+}
+
+#rotation-angle{
+  width: 3em;
+}
+
+#rotation-angle-container:after {
+  content: '\00B0';
+  position: relative;
+  font-size: 200%;
+  top:-5px;
+  left: 2px;
+  color: white;
 }

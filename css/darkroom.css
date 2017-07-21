@@ -10,7 +10,7 @@
   position: absolute;
   top: -45px;
   left: 0;
-  background: #888;
+  background: #555;
   height: 40px;
   min-width: 40px;
   z-index: 99;
@@ -46,10 +46,10 @@
   height: 40px; }
   .darkroom-button:hover {
     cursor: pointer;
-    background: #555; }
+    background: #333; }
   .darkroom-button:active {
     cursor: pointer;
-    background: #333; }
+    background: #222; }
   .darkroom-button:disabled .darkroom-icon {
     fill: #666; }
   .darkroom-button:disabled:hover {
@@ -71,5 +71,22 @@
   width: 24px;
   height: 24px;
   fill: #fff; }
+
+.darkroom-input-default {
+  position: relative;
+  top: -6px;
+  background: #555;
+  color: white; }
+
+#rotation-angle {
+  width: 3em; }
+
+#rotation-angle-container:after {
+  content: '\00B0';
+  position: relative;
+  font-size: 200%;
+  top: -5px;
+  left: 2px;
+  color: white; }
 
 /*# sourceMappingURL=darkroom.css.map */
