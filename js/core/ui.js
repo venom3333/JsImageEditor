@@ -66,6 +66,7 @@
       // Контейнер для нашего инпут поля
       var inputElementContainer = document.createElement('span');
       inputElementContainer.id = options.id + "-container";
+      inputElementContainer.className = 'input-container darkroom-button';
 
       var inputElement = document.createElement('input');
       inputElement.type = 'number';
@@ -82,7 +83,7 @@
       // И вместе с контейнером цепляем к общему элементу UI
       this.element.appendChild(inputElementContainer);
 
-      var inputField = new Button(inputElement);
+      var inputField = new Button(inputElementContainer);
       inputField.hide(options.hide);
       inputField.disable(options.disabled);
 

@@ -107,15 +107,65 @@ $toolBarBackground: #555;
   color: white;
 }
 
+// Поля для ввода
+.input-container{
+  color: white;
+  font-size: 190%;
+  &:hover{
+    cursor: default;
+    background: $toolBarBackground;
+  }
+  &:active{
+    cursor: default;
+    background: $toolBarBackground;
+  }
+}
+
+// Угол поворота картинки
 #rotation-angle{
   width: 3em;
 }
+#rotation-angle-container{
+  &:after {
+    position: relative;
+    content: '\00B0';
+    top:-6px;
+    left: 2px;
+    //color: white;
+  }
+}
 
-#rotation-angle-container:after {
-  content: '\00B0';
-  position: relative;
-  font-size: 200%;
-  top:-5px;
-  left: 2px;
-  color: white;
+// Поля для кропа
+#crop-coordinate-x-container,
+#crop-coordinate-y-container,
+#crop-width-container,
+#crop-height-container {
+  font-size: 150%;
+
+  &:before{
+    position: relative;
+    top: -5px;
+    margin-left: 5px;
+  }
+}
+
+#crop-coordinate-x-container{
+  &:before{
+    content: 'x:';
+  }
+}
+#crop-coordinate-y-container{
+  &:before{
+    content: 'y:';
+  }
+}
+#crop-width-container{
+  &:before{
+    content: 'w:';
+  }
+}
+#crop-height-container{
+  &:before{
+    content: 'h:';
+  }
 }

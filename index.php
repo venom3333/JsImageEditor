@@ -59,8 +59,8 @@
     <script src="./js/core/bootstrap.js"></script>
 
     <script src="./js/plugins/darkroom.history.js"></script>
-    <script src="./js/plugins/darkroom.crop.js"></script>
     <script src="./js/plugins/darkroom.rotate.js"></script>
+    <script src="./js/plugins/darkroom.crop.js"></script>
     <script src="./js/plugins/darkroom.save.js"></script>
 
     <script>
@@ -70,8 +70,8 @@
           // Size options
           minWidth: 100,
           minHeight: 100,
-          maxWidth: 600,
-          maxHeight: 500,
+          maxWidth: 1000,
+          maxHeight: 1000,
           ratio: 4 / 3,
           backgroundColor: '#000',
 

@@ -78,15 +78,48 @@
   background: #555;
   color: white; }
 
+.input-container {
+  color: white;
+  font-size: 190%; }
+  .input-container:hover {
+    cursor: default;
+    background: #555; }
+  .input-container:active {
+    cursor: default;
+    background: #555; }
+
 #rotation-angle {
   width: 3em; }
 
 #rotation-angle-container:after {
-  content: '\00B0';
   position: relative;
-  font-size: 200%;
-  top: -5px;
-  left: 2px;
-  color: white; }
+  content: '\00B0';
+  top: -6px;
+  left: 2px; }
+
+#crop-coordinate-x-container,
+#crop-coordinate-y-container,
+#crop-width-container,
+#crop-height-container {
+  font-size: 150%; }
+  #crop-coordinate-x-container:before,
+  #crop-coordinate-y-container:before,
+  #crop-width-container:before,
+  #crop-height-container:before {
+    position: relative;
+    top: -5px;
+    margin-left: 5px; }
+
+#crop-coordinate-x-container:before {
+  content: 'x:'; }
+
+#crop-coordinate-y-container:before {
+  content: 'y:'; }
+
+#crop-width-container:before {
+  content: 'w:'; }
+
+#crop-height-container:before {
+  content: 'h:'; }
 
 /*# sourceMappingURL=darkroom.css.map */
